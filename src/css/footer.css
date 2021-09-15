@@ -1,0 +1,35 @@
+.containerFooter{
+    width: 100%;
+    background-color: #21181D;
+    display: flex;
+    flex-direction: row;
+}
+.sonFooter{
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    padding-top: 20px;
+}
+.defaultWord{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    color: #C5C2C4;
+    text-align: center;
+}
+.separador{
+    width: 420px;
+    height: 1px;
+    background: #525252;
+    margin: 10px auto;
+}
+.FatherIcons{
+    display: flex;
+    width: 150px;
+    margin: 20px auto;
+    justify-content: center;
+}
+.countanerIcon{
+    margin: 5px 20px;
+}

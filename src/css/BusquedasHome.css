@@ -1,0 +1,21 @@
+.containerBusequedas{
+    max-height: 490px;
+    min-height: 490px;
+    padding: 0 25px;
+    display: flex;
+    overflow-y: auto;
+    background: #000000;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.defaultTitlesobjectsbuscar{
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 28px;
+    color: #FFFFFF;
+    width: 100%;
+    padding-left: 40px;
+}

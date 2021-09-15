@@ -1,0 +1,95 @@
+body{
+    background-color: #F5EAD7;
+}
+.sizeDefault{
+    width: 50%;
+    height: 100%;
+}
+.containerImg{
+    width: 50%;
+    height: 100%;
+    position: relative;
+    display: flex;
+}
+.HomeImg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+}
+.sizeDefaultover{
+    min-width: 100%;
+    min-height: 100%;
+    background: rgba(238, 69, 62, 0.35);
+    opacity: 0.6;
+
+}
+.fatherContainerHomecenter{
+    display: flex;
+    height: 800px;
+}
+.containerHomeright{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.logoRight{
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+    margin: 60px auto 0;
+}
+.textinsideImg1{
+    width: 405px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 40px;
+    color: #FFFFFF;
+    text-align: left;
+    margin: 20px 0 0 auto;
+}
+.textinsideImg2{
+    width: 405px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 28px;
+    color: #FFFFFF;
+    text-align: left;
+    margin: 0 0 0 auto;
+}
+.containertextRight{
+    margin: 0 auto;
+    width: 50%;
+}
+.separator{
+    width: 185px;
+    height: 6px;
+    background: #C4C4C4;
+    margin: 10px auto;
+}
+.textRighthome{
+    width: 150px;
+    font-family: Rozha One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 70px;
+    line-height: 70px;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.textRighthomeunder{
+    width: 400px;
+    font-family: Rozha One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 60px;
+    line-height: 50px;
+    color: #000000;
+    text-align: start;
+}

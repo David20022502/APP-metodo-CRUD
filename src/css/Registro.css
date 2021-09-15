@@ -1,0 +1,71 @@
+.containerMainRegistro{
+    display: flex;
+    height: 800px;
+    background: linear-gradient(180deg, #F09D85 0%, rgba(240, 157, 133, 0.58) 100%);
+}
+.containerRight{
+    width: 1000px;
+    height: 100%;
+}
+.containerLeft{
+    width: 100%;
+    height: 100%;
+}
+.imgRegistro{
+    width: 100%;
+    height: 100%;
+}
+.containerGetData{
+    width: 650px;
+    padding: 10px;
+    background-color: #EF9C84;
+    margin: 0 auto auto auto;
+}
+.TitleRegister{
+    font-family: Average;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 49px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+.containerMainLogin{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.inputTextbox{
+    width: 450px;
+    height: 50px;
+    margin: 7px auto;
+}
+.containerButtons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.ButonConnect{
+    margin: 20px;
+    height: 60px;
+    width: 200px;
+    margin-left: 150px;
+}
+.letersButton{
+    font-size: 30px;
+}
+.CheckBox{
+font-family: Average;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 22px;
+align-items: center;
+    width: 100%;
+text-align: center;
+    margin: 0 auto;
+color: #FFFFFF;
+    justify-content: center;
+}

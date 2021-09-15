@@ -1,0 +1,23 @@
+.artistItem{
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    position: relative;
+
+}
+.artistItemdiv{
+    width: 230px;
+    height: 250px;
+    padding: 15px;
+    cursor: pointer;
+}
+.styleNameArtist{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 10px;
+}

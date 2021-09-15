@@ -1,0 +1,53 @@
+#components-layout-demo-side .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout .site-layout-background {
+    background: #fff;
+}
+.containerLeftcontrol{
+    background: rgb(0,0,0)!important;
+    background: linear-gradient(
+            180deg, rgb(10 10 10) 30%, rgb(22 5 29) 100%)!important;
+}
+.containerLeft1 {
+    background-color: #121216 !important;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 30%, rgba(188,0,255,1) 100%);
+}
+.ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub{
+    background: transparent!important;
+}
+.ant-layout-sider-trigger {
+background: #24415f !important;
+}
+
+
+.ImageLogo{
+    width: 45px;
+    height: 45px;
+    margin-right: 20px;
+    border-radius: 20px;
+}
+.NameLogo{
+font-family: Ribeye;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 41px;
+text-align: center;
+    color: white;
+}
+.ItemLogo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding-left: 20px;
+}
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    background: transparent!important;
+    padding-left: 20px!important;
+}

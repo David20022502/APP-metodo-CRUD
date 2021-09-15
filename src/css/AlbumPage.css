@@ -1,0 +1,10 @@
+.containerBusequedasalbumes{
+    max-height: 490px;
+    min-height: 490px;
+    padding: 0 25px;
+    display: flex;
+    overflow-y: auto;
+    background: #000000;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

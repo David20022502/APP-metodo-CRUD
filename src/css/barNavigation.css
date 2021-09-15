@@ -1,0 +1,85 @@
+.ant-menu-horizontal {
+    background-color: transparent;
+    line-height: 60px!important;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50px;
+}
+.defaultstylebarnavigationtop{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 80px;
+    text-align: center;
+    color: #C5C2C4;
+    margin: 0;
+}
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.NameLogoApp{
+    cursor: pointer;
+}
+.LogoProject{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.LogoProject h1{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    color: #FFFFFF;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 20px;
+    font-size: 40px;
+
+}
+
+.ImgLogo{
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    margin-right: auto;
+}
+.continfo{
+    display: flex;
+    flex-direction: row;
+}
+.Barnavigation{
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+    background-color: #21181D;
+}
+.footerLogin{
+    width: 100%;
+    justify-content: center;
+}
+.containerMainLogin{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.inputTextboxLoad{
+    width: 300px;
+    height: 50px;
+    margin: 3px auto;
+}
+.containerButtons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.ButonConnectload{
+    margin-bottom: 20px;
+width: 500px;
+    height: 50px;
+}
