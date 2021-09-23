@@ -2,7 +2,6 @@ import React from 'react';
 import {
     LoadingOutlined
 } from '@ant-design/icons';
-import Logo from '../imgs/logo.jpeg';
 import  '../css/WaitingPage.css';
 const WaitingPage=()=>{
     return(

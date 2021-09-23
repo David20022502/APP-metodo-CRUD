@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+/**import React, {useEffect, useState, useRef} from 'react';
 import '../css/MusicHome.css';
 import Logo from "../imgs/logo.jpeg";
 import {Layout, Menu, Progress, Button} from "antd";
@@ -58,10 +58,6 @@ const MusicHome=()=>{
             audio.current.pause();
         }
     }
-    /*const changeTimeMusic=(time)=>{
-        audio.current.currentTime=(audio.current.duration/100)*time.target.value;
-        setvalueProgres(time.target.value);
-    }*/
     const PlayMusic=(ide)=>{
         setMusicIndex(ide);
         if(audio.current.paused===false){
@@ -183,21 +179,6 @@ const MusicHome=()=>{
    );
 
 }
-
-/*
- <div className="silder-container">
-                                    <input  value={valueProgres} type="range"  onChange={changeTimeMusic}  step="any" id="range"/>
-                                </div>
-
-                                {currentMusic &&<div className="defaultStyle">{timeProgres} {currentMusic.nombre} {currentTimeMusicc}</div>}
-
-
-* */
-
-/*
-   <input min={0} max={100} ref={progresBarmusic} style={{width:"600px"}} value={0} type="range"  onChange={changeTimeMusic}  step="any" id="range" />
- */
-
 const music=[
     {
         "id": "101",
@@ -969,4 +950,4 @@ const music=[
 
 
 export default MusicHome;
-
+*/

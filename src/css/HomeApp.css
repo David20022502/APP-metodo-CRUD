@@ -30,3 +30,11 @@
     background: #797777;
     margin-bottom: 20px;
 }
+.homeAppdiv::-webkit-scrollbar{
+    width: 7px;
+    background: transparent;
+}
+.homeAppdiv::-webkit-scrollbar-thumb{
+    background: #a9a7a7;
+    border-radius: 100px;
+}

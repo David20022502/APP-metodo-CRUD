@@ -19,3 +19,11 @@
     width: 100%;
     padding-left: 40px;
 }
+.containerBusequedas::-webkit-scrollbar{
+    width: 7px;
+    background: transparent;
+}
+.containerBusequedas::-webkit-scrollbar-thumb{
+    background: #a9a7a7;
+    border-radius: 100px;
+}

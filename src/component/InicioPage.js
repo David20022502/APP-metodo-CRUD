@@ -5,6 +5,7 @@ import BarNavigation from "./BarNavigation";
 import Footerp from './Footer.js';
 import Registro from "./Registro";
 import Home from "./Home";
+import QuienesSomos from "./QuienesSomos.js";
 const InicioPage=()=>{
 
     return(
@@ -18,6 +19,9 @@ const InicioPage=()=>{
                         <Switch>
                             <Route path="/registrar">
                                 <Registro/>
+                            </Route>
+                            <Route path="/whoweare">
+                                <QuienesSomos/>
                             </Route>
                             <Route path="/">
                                 <Home/>

@@ -4,7 +4,6 @@
 import firebase from "firebase/app";
 import  "firebase/database";
 import 'firebase/auth';
-
 const firebaseConfig = {
     apiKey: "AIzaSyDq_8eSMCyB85PXq2LGi8T0PQf-sAwkIYo",
     authDomain: "proyectoiden-960c7.firebaseapp.com",
@@ -18,3 +17,5 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 export const db = app.database();
 export const auth = app.auth();
+export const authGoogle = firebase;
+

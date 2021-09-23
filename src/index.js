@@ -3,11 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './component/App';
 import reportWebVitals from './reportWebVitals';
-import ModalInfo from "./component/ModalInfo";
-
 ReactDOM.render(
     (<React.StrictMode>
-            <App/>
+        <App/>
     </React.StrictMode>)
    ,
      document.getElementById('root')

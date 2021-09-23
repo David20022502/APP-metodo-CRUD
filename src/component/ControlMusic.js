@@ -1,15 +1,54 @@
-import React from'react';
+import React, {useEffect, useState} from 'react';
 import Repetir from "../imgs/repetir.png";
 import Aleatorio from "../imgs/aleatorio.png";
 import LogoItem from "../imgs/logomusicItem.jpg";
-import {Button} from "antd";
+import {Button, Popover} from "antd";
 import Prev from "../imgs/prev.png";
-import Play from "../imgs/play.png";
 import Next from "../imgs/next.png";
 import InfoItem from "../imgs/infoItem.png";
 import {SoundOutlined} from "@ant-design/icons";
 import '../css/ControlMusic.css';
+import ImgController from '../imgs/Imagenes';
 const ControlMusic =({changevolumenMusic,currentMusic,timeProgres,getCurrentTime,currentTimeMusicc,PrevMusic,playy,nextMusic})=>{
+    const [IsPlaying,setIsPlaying]=useState(false);
+    const [IsFirstTime,setIsFirstTime]=useState(true);
+    const changePausePlay=()=>{
+        if(currentMusic!==null){
+            setIsPlaying(!IsPlaying);
+        }
+    }
+    useEffect(()=>{
+        if(timeProgres!==0 && IsFirstTime===true){
+            setIsPlaying(true);
+            setIsFirstTime(false);
+        }
+    })
+    const content = (
+        <div style={{width:"300px", display:"flex",flexDirection:"column"}}>
+            <div style={{width:"100%",display:"flex",flexDirection:"row",padding:"5px"}}>
+                <img src={LogoItem} alt="" style={{width:"65px",height:"65px"}}/>
+                <div style={{width:"100%",display:"flex",flexDirection:"column",padding:"0 5px",justifyContent:"center"}}>
+                    <div style={{width:"100%",display:"flex",flexDirection:"row"}}>
+                        <h1 className="defaultStyleParams">Título:</h1>
+                        <h1 className="defaultStyleAnswers">{currentMusic &&currentMusic.nombre}</h1>
+                    </div>
+                    <div style={{width:"100%",display:"flex",flexDirection:"row"}}>
+                        <h1 className="defaultStyleParams">Autor:</h1>
+                        <h1 className="defaultStyleAnswers">{currentMusic &&currentMusic.autor}</h1>
+                    </div>
+                </div>
+            </div>
+            <div style={{marginTop:"5px"}} className="separadorHomeapp"></div>
+            <div style={{width:"100%",display:"flex",flexDirection:"row"}}>
+                <h1 className="defaultStyleParams">Género:</h1>
+                <h1 className="defaultStyleAnswers">{currentMusic &&currentMusic.genero}</h1>
+            </div>
+            <div style={{width:"100%",display:"flex",flexDirection:"row"}}>
+                <h1 className="defaultStyleParams">Duración:</h1>
+                <h1 className="defaultStyleAnswers">{currentMusic &&getCurrentTime(currentTimeMusicc)}</h1>
+            </div>
+        </div>
+    );
     return(
         <div className="containerControls">
 
@@ -57,7 +96,10 @@ const ControlMusic =({changevolumenMusic,currentMusic,timeProgres,getCurrentTime
                         onClick={playy}
                         style={{background:"transparent",border: "none",padding:"0",height:"50px",position:"relative" }}
                     >
-                        <img id="PlayIMG" src={Play} alt="" style={{width:"100px",height:"50px"}}/>
+                        {
+                            IsPlaying===true ?  <img onClick={changePausePlay} id="PlayIMG" src={ImgController.Pause} alt="" style={{width:"100px",height:"50px",cursor:"pointer"}}/>:
+                                <img onClick={changePausePlay} id="PlayIMG" src={ImgController.Play} alt="" style={{width:"100px",height:"50px",cursor:"pointer"}}/>
+                        }
                     </Button>
 
                     <Button
@@ -67,16 +109,18 @@ const ControlMusic =({changevolumenMusic,currentMusic,timeProgres,getCurrentTime
                         <img src={Next} alt="" style={{width:"60px",height:"40px"}}/>
                     </Button>
                 </div>
-                <Button
-                    style={{background:"transparent",
-                        border: "none",padding:"0",
-                        height:"40px",
-                        display:"flex",
-                        marginTop:"auto"
-                    }}
-                >
-                    <img src={InfoItem} alt="" style={{width:"30px",height:"30px"}}/>
-                </Button>
+                <Popover style={{backround:"blue",backgroundColor:"red"}} content={content} title="Información" trigger="click">
+                    <Button
+                        style={{background:"transparent",
+                            border: "none",padding:"0",
+                            height:"40px",
+                            display:"flex",
+                            marginTop:"auto"
+                        }}
+                    >
+                        <img src={InfoItem} alt="" style={{width:"30px",height:"30px"}}/>
+                    </Button>
+                </Popover>
             </div>
         </div>
     );

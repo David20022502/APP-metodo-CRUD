@@ -77,3 +77,13 @@
     height: 5px;
     margin: 16px auto;
 }
+.defaultStyleParams{
+    color: #000000;
+    font-size: 15px;
+    margin-right: 5px;
+}
+.defaultStyleAnswers{
+    color: #6f6f6f;
+    font-size: 13px;
+    padding-top: 2px;
+}

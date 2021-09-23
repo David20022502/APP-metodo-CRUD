@@ -8,6 +8,7 @@
     height: 40px;
     width: 40px;
     margin: auto 22px auto auto;
+    display: flex;
 }
 .IconUserHome{
     width: 40px;

@@ -8,3 +8,11 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.containerBusequedasalbumes::-webkit-scrollbar{
+    width: 7px;
+    background: transparent;
+}
+.containerBusequedasalbumes::-webkit-scrollbar-thumb{
+    background: #a9a7a7;
+    border-radius: 100px;
+}

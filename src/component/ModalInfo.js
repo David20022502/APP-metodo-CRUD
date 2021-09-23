@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../css/modalInfo.css';
-import {Button, Modal, Popover} from "antd";
-import { Popconfirm, message } from 'antd';
+import {Button, Popover} from "antd";
 const ModalInfo=()=>{
     const content = (
         <div>

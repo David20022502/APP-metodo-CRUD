@@ -13,7 +13,7 @@ const Home = () =>{
                         <h1 className="textinsideImg1">
                             ¡ESCUCHA LA MEJOR MÚSICA!
                         </h1 >
-                        <h1 className="textinsideImg2"> EXPLORALO YA !</h1>
+                        <h1 className="textinsideImg2"> EXPLÓRALO YA !</h1>
                     </div>
                 </div>
                 <div className="containerHomeright">
@@ -22,7 +22,7 @@ const Home = () =>{
                     </div>
                     <div className="containertextRight">
                         <h1 className="textRighthome">
-                            Nuevos Albumes
+                            Nuevos Álbumes
                         </h1>
                         <h1 className="textRighthomeunder">
                             Disfruta de tus canciones sin interrupciones

@@ -1,31 +1,51 @@
 import {UserOutlined,LeftOutlined,RightOutlined} from "@ant-design/icons";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import '../css/HeaderApp.css';
-import {Input} from "antd";
-import {auth} from "../Firebase";
+import {Avatar, Input} from "antd";
+import {auth, db} from "../Firebase";
 import {useHistory} from "react-router-dom";
-const HeaderApp=({handdlesearch,exituser,changetoNull})=>{
+const HeaderApp=({authUser,exitUser,changetoNull})=>{
     const history = useHistory();
+    const[User,setUser]=useState(null);
+    useEffect(()=>{
+        db.ref(`users/${authUser.uid}`).on("value",(snapshot)=>{
+            console.log("gustos traidos de la base",snapshot);
+            setUser(snapshot.val());
+            console.log("user data",snapshot.val());
+            /*snapshot.forEach((childSnapshot)=>{
+                    const childId = childSnapshot.key;
+                    const data = childSnapshot.val();
+                    setUsuario(data)
+                console.log("user data",data);
+                }
+            );*/
+        });
+    },[])
     const goOut= async()=>{
         await auth.signOut();
         history.push("/");
-        exituser();
+        exitUser();
+    }
+    const handdlesearch=(e)=>{
+        history.push(`/search/${e.target.value}`)
     }
     return(
         <>
                 <div className="HeaderContainerMusic">
-                    <div style={{display:"flex", margin:"auto 0"}}>
-                        <LeftOutlined onClick={()=>changetoNull(false)} style={{fontSize:"20px",color:"white", margin:"5px",cursor:"pointer"}}/>
-                        <RightOutlined onClick={()=>changetoNull(true)} style={{fontSize:"20px",color:"white",margin:"5px",cursor:"pointer"}}/>
-                    </div>
                     <Input onPressEnter={handdlesearch} className="BarraBusqueda"  placeholder="Buscar canciones, álbum, artistas" />
                     <div className="containerUser">
-                        <div onClick={goOut} className="IconUserHome">
-                            <UserOutlined style={{fontSize:"25px",color:"white",position:"absolute"}} />
-                        </div>
+                        <img onClick={goOut} src={User&&User.imgUrlUser} alt="" style={{cursor:"pointer",width:"40px",height:"40px",borderRadius:"50%"}}/>
                     </div>
                 </div>
         </>
     );
 }
 export default HeaderApp;
+/*<Avatar onClick={goOut} style={{position:"absolute",cursor:"pointer"}} size="large" icon={<UserOutlined />} />
+*/
+// <UserOutlined style={{fontSize:"25px",color:"white",position:"absolute"}} />
+/*
+ <div onClick={goOut} className="IconUserHome">
+
+                        </div>
+* */

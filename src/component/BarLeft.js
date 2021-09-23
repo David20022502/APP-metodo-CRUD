@@ -1,25 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
-    Link
+    Link, useHistory
 } from "react-router-dom";
 import '../css/BarLeft.css';
 import Logo from '../imgs/logo.jpeg';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 import {
-    DesktopOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
     UserOutlined,
     HomeOutlined,
     HeartOutlined
 } from '@ant-design/icons';
 
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+const { Sider } = Layout;
 
-const BarLeft=({changetoNull})=> {
-    const [visibleTitle,setVisibleTitle]=useState(true);
+const BarLeft=()=> {
+    const history = useHistory();
     const state = {
         collapsed: false,
     };
@@ -31,20 +26,22 @@ const BarLeft=({changetoNull})=> {
    };
     const handleClick = (e) => {
         console.log('click ', e);
-        //changetoNull();
     };
+    const pushHome=()=>{
+        history.push("/");
+    }
         const { collapsed } = state;
         return (
             <Sider className="containerLeftcontrol" collapsed={collapsed} onCollapse={onCollapse}>
                 <div className="logo" />
                 <div className="ItemLogo">
                     <img src={Logo} alt="Logo" className="ImageLogo"/>
-                    {visibleTitle && <h1 className="NameLogo">Iden-X</h1>}
+                    <h1 onClick={pushHome} className="NameLogo">Iden-X</h1>
                 </div>
                 <Menu onClick={handleClick} theme="dark" defaultSelectedKeys={['3']} mode="inline">
                     <Menu.Item key="2" icon={<UserOutlined />}>
                         Mi cuenta
-                        <Link to="/cuenta">
+                        <Link to="/count">
                         </Link>
                     </Menu.Item>
                     <Menu.Item key="3" icon={<HomeOutlined />} >
@@ -54,7 +51,7 @@ const BarLeft=({changetoNull})=> {
                     </Menu.Item >
                     <Menu.Item key="4" icon={<HeartOutlined />}>
                         Favoritos
-                        <Link to="/favoritos">
+                        <Link to="/favorites">
                         </Link>
                     </Menu.Item>
                 </Menu>

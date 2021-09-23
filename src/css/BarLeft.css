@@ -39,6 +39,7 @@ font-size: 30px;
 line-height: 41px;
 text-align: center;
     color: white;
+    cursor: pointer;
 }
 .ItemLogo{
     display: flex;

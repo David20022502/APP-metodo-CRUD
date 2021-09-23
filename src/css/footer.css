@@ -17,6 +17,7 @@
     font-size: 25px;
     color: #C5C2C4;
     text-align: center;
+    cursor: pointer;
 }
 .separador{
     width: 420px;

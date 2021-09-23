@@ -2,29 +2,21 @@ import React, {useState} from 'react';
 import Logo from '../imgs/logo.jpeg';
 import {Menu, Modal, Button, Input} from 'antd';
 import { Form, Checkbox } from 'antd';
-import {auth,db} from "../Firebase";
+import {auth, authGoogle, db} from "../Firebase";
 import {
     FacebookOutlined,
     GoogleOutlined,
-    KeyOutlined,
     MailOutlined,
     UserAddOutlined,
     UserOutlined
 } from '@ant-design/icons';
 import '../css/barNavigation.css';
 import {Link,useHistory} from "react-router-dom";
-import Registro from "./Registro";
-const { SubMenu } = Menu;
-
+import translateMessage from "./Messages.js";
 const BarNavigation=({chagetoRegister})=>{
     const history = useHistory();
     const[viewModal,setModalview] =useState(false);
-const showModal=()=>{
-    setModalview(true);
-}
-const handleOk = ()=>{
-    setModalview(false);
-}
+    const[MessageError,setMessageError]=useState(null);
 const handleCancel=()=>{
     setModalview(false);
 }
@@ -42,6 +34,48 @@ const changePath=()=>{
 
         }
     };
+    const handleConectGoogle=async()=> {
+        try {
+            const GoogleProvider = await new authGoogle.auth.GoogleAuthProvider();
+            const responseGoogle = await auth.signInWithPopup(GoogleProvider);
+            const checknewUsr = await checkUser(responseGoogle.user.uid);
+            console.log("user id",responseGoogle.user.uid);
+            console.log("user id",checknewUsr);
+            if(checknewUsr===false){
+                const fullName=responseGoogle.user.displayName;
+                const email=responseGoogle.user.email;
+                const birthday="";
+                const imgUrlUser=responseGoogle.user.photoURL;
+                console.log("nuevo usuario");
+                await db.ref(`users/${responseGoogle.user.uid}`).set({
+                    fullName,
+                    email,
+                    birthday,
+                    imgUrlUser
+                });
+                history.push("/");
+            }
+            else {
+                console.log("usuario ya registrado");
+            }
+        }
+        catch (error){
+            console.log("ocurrio un error");
+        }
+    }
+    const checkUser =async (userId)=> {
+        let value = false;
+        await db.ref(`users/`).on("value", (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+                    const childId = childSnapshot.key;
+                    if (userId===childId){
+                        value= true;
+                    }
+                }
+            );
+        });
+        return await value;
+    }
     const onFinish = async (values) => {
         console.log('Success:', values);
         try {
@@ -55,12 +89,15 @@ const changePath=()=>{
             history.push("/");
         }
         catch (error){
-            console.log("ocurrio un error");
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setMessageError(translateMessage(errorCode));
         }
     };
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
+
     };
 
     return(
@@ -108,9 +145,11 @@ const changePath=()=>{
             >
                 <div className="containerMainLogin">
                     <div className="containerButtons" >
-                        <Button icon={<GoogleOutlined style={{fontSize:"25px"}} />} style={{marginRight:"10px",fontSize:"20px"}} className="ButonConnectload" type="primary">Facebbok</Button>
-                        <Button icon={<FacebookOutlined style={{fontSize:"25px"}} />} style={{marginLeft:"10px",fontSize:"20px"}} className="ButonConnectload" type="primary">Google</Button>
+
+                        <Button onClick={handleConectGoogle} icon={<GoogleOutlined style={{fontSize:"25px"}} />} style={{marginRight:"10px",fontSize:"20px"}} className="ButonConnectload" type="primary">Google</Button>
+                        <Button icon={<FacebookOutlined style={{fontSize:"25px"}} />} style={{marginLeft:"10px",fontSize:"20px"}} className="ButonConnectload" type="primary">Facebook</Button>
                     </div>
+                    <h1 className="defaultStyleError">{MessageError&&MessageError}</h1>
                     <Form style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}
                         name="basic"
                         labelCol={{ span: 8 }}

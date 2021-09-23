@@ -4,22 +4,19 @@ import {auth,db} from "../Firebase";
 import InicioPage from "./InicioPage";
 import AppHome from "./AppHome";
 import WaitingPage from "./WaitingPage";
-import {useHistory} from "react-router-dom";
 import ChooseMusic from "./ChooseMusic";
+import Whoarewe from "./Whoarewe";
 function App() {
-    const history = useHistory();
     const [authUser,setauthUser]=useState(null);
-    const[gustosdatabase,setgustosdatabse]=useState(null);
-    const[favoritos,setfavoritos]=useState(null)
+    const[LikesDatabase,setLikesDatabase]=useState(null);
     useEffect(
         ()=>{
             auth.onAuthStateChanged(
                 (user)=>{
                     if(user){
                         const gustostemporales = [];
-                        const favoritosTemporal=[]
                         setauthUser(user);
-                        db.ref(`gustos/${user.uid}/gustos`).on("value",(snapshot)=>{
+                        db.ref(`gustos/${user.uid}/Likes`).on("value",(snapshot)=>{
                            console.log("gustos traidos de la base",snapshot);
                            snapshot.forEach((childSnapshot)=>{
                                const childId = childSnapshot.key;
@@ -27,59 +24,34 @@ function App() {
                                gustostemporales.push(data)
                                }
                            );
-                            setgustosdatabse(gustostemporales);
+                            setLikesDatabase(gustostemporales);
                         });
-                        //try {
-                            db.ref(`favoritos/${user.uid}`).on("value",(snapshot)=>{
-                                console.log("favoritos traidos de la base",snapshot);
-                                snapshot.forEach((childSnapshot)=>{
-                                        const childId = childSnapshot.key;
-                                        const data = childSnapshot.val();
-                                        const dataDb={
-                                            id:childId,
-                                            idcancion:data.idcancion,
-                                            iduser:data.iduser
-                                        }
-                                        favoritosTemporal.push(dataDb)
-                                    }
-                                );
-                                setfavoritos(favoritosTemporal);
-                            });
-
-                      //  }catch (error){
-                        //    console.log(error);
-                       // }
-
                     }
                     else {
                         console.log("no hay registro");
-                        setgustosdatabse(false);
+                        setLikesDatabase(false);
                         setauthUser(false);
-                        history.push("/");
                     }
                 }
             );
         },[]
     )
     useEffect(()=>{
-        console.log("gustaos que se cambiaron",gustosdatabase);
-        if(gustosdatabase!==null) {
-            if (gustosdatabase.length === 0) {
-                setgustosdatabse(false);
+        console.log("gustaos que se cambiaron",LikesDatabase);
+        if(LikesDatabase!==null) {
+            if (LikesDatabase.length === 0) {
+                setLikesDatabase(false);
             }
         }
-    },[gustosdatabase])
-    useEffect(()=>{
-        console.log("los favoritso de la base de datos",favoritos);
-    },[favoritos])
-    const exituser=()=>{
-        setgustosdatabse(null);
+    },[LikesDatabase])
+    const exitUser=()=>{
+        setLikesDatabase(null);
     }
 
     return (
         <>
             {
-                authUser === null ? <WaitingPage/> : authUser ===false ? <InicioPage/>:gustosdatabase===null?  <WaitingPage/> : gustosdatabase ===false? <ChooseMusic authUser={authUser}/>: <AppHome exituser={exituser} authUser={authUser} gustosdatabase={gustosdatabase}  favoritos={favoritos} />
+                authUser === null ? <WaitingPage/> : authUser ===false ? <InicioPage/>:LikesDatabase===null?  <WaitingPage/> : LikesDatabase ===false? <ChooseMusic authUser={authUser}/>: <AppHome exitUser={exitUser} authUser={authUser} LikesDatabase={LikesDatabase}  />
             }
         </>
 
@@ -87,6 +59,11 @@ function App() {
 }
 
 export default App;
+/*
+{
+                authUser === null ? <WaitingPage/> : authUser ===false ? <InicioPage/>:gustosdatabase===null?  <WaitingPage/> : gustosdatabase ===false? <ChooseMusic authUser={authUser}/>: <AppHome exituser={exituser} authUser={authUser} gustosdatabase={gustosdatabase}  />
+            }
+* */
 /*  {
                 authUser === null ? <WaitingPage/> : authUser ===false ? <InicioPage/>:gustosdatabase===null?  <WaitingPage/> : gustosdatabase ===false? <ChooseMusic authUser={authUser}/>: <AppHome exituser={exituser}/>
             }

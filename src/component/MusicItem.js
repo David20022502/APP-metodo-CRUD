@@ -5,73 +5,61 @@ import {
     PlayCircleOutlined
 } from '@ant-design/icons';
 import '../css/MusicItem.css';
-import {Button, Modal} from "antd";
+import {Button} from "antd";
 import {db} from "../Firebase";
-import WaitingPage from "./WaitingPage";
-const MusicItem =({Musica,PlayMusic,index,authUser,favoritos})=>{
-    let favoritostemp;
-    const [verFavoritos,setverFavoritos]=useState(null);
-    const[eliminarFavorito,seteliminarFavorito]=useState(null);
+const MusicItem =({Musica,PlayMusic,index,authUser,Favorites,handleUpdateFavoritos})=>{
+
+    const [SeeFavorites,setSeeFavorites]=useState(null);
+    const [IsChangingFavoritos,setIsChangingFavoritos]=useState(null);
     useEffect(()=>{
-        if(favoritos){
-            favoritostemp = favoritos.map((item,index)=>{
-                return(item.idcancion);
-            })
-            if(favoritostemp.includes(Musica.id)===false){
-                setverFavoritos(false);
+        const values = getverFavoritos();
+        setSeeFavorites(values.favorito);
+    })
+    useEffect(()=>{
+        if(IsChangingFavoritos!==null){
+            const verEstado = getverFavoritos();
+            if(verEstado.favorito===false){
+                handleAdd();
+                handleUpdateFavoritos();
             }
             else {
-                setverFavoritos(true);
+                handleDellete(verEstado);
+                handleUpdateFavoritos();
+              //  getFavoriteSongs();
             }
         }
-        else {
-            favoritostemp=[];
-        }
-    },[])
-    useEffect(()=>{
-        if(eliminarFavorito!==null){
-            eliminarDB();
-        }
-    },[eliminarFavorito])
-    useEffect(()=>{
-        if(verFavoritos!==null){
-            eliminarDB();
-        }
-    },[verFavoritos])
-    const eliminarDB=async ()=>{
-        if(verFavoritos===true){
-            const idu=authUser.uid;
-            const allFavorites = db.ref(`favoritos/${idu}`);
-            const newAllfavoritos =allFavorites.push();
-            await newAllfavoritos.set({
-                iduser:idu,
-                idcancion:Musica.id
+    },[IsChangingFavoritos])
+    const getverFavoritos=()=>{
+        let values={
+            favorito:false,
+            id:null
+        };
+        if (Favorites) {
+            Favorites.forEach((element) => {
+                if (element.idcancion === Musica.id) {
+                    values.favorito = true;
+                    values.id = element.id;
+                    //break;
+                }
             });
         }
-        else{
-            if(favoritostemp) {
-                const positionElemn = favoritostemp.indexOf(Musica.id);
-                seteliminarFavorito(positionElemn);
-            }
-        }
+        return values;
     }
-    const addFavoritos=async()=>{
-       // const element = document.getElementsByClassName("heartMusic");
-        //element[index].style.color="white";
-        setverFavoritos(!verFavoritos);
-           /* if(favoritostemp.includes(Musica.id)===false){
-                const idu=authUser.uid;
-                const allFavorites = db.ref(`favoritos/${idu}`);
-                const newAllfavoritos =allFavorites.push();
-                await newAllfavoritos.set({
-                    iduser:idu,
-                    idcancion:Musica.id
-                });
-            }
-            else {
-                const positionElemn=favoritostemp.indexOf(Musica.id);
-                seteliminarFavorito(positionElemn);
-            }*/
+    const handleAdd=async ()=>{
+        const idu=authUser.uid;
+        const allFavorites = await db.ref(`favoritos/${idu}`);
+        const newAllfavoritos =await allFavorites.push();
+        await newAllfavoritos.set({
+            iduser:idu,
+            idcancion:Musica.id
+        });
+    }
+    const handleDellete=async (verEstado)=>{
+        await db.ref(`favoritos/${authUser.uid}/${verEstado.id}`).remove();
+    }
+    const addFavoritos=()=>{
+        setSeeFavorites(!SeeFavorites);
+        setIsChangingFavoritos(!IsChangingFavoritos);
     }
     return(
         <div className="ContainerMusicItem">
@@ -87,7 +75,7 @@ const MusicItem =({Musica,PlayMusic,index,authUser,favoritos})=>{
                 </div>
                 <div className="defaultSize">
                     {
-                        verFavoritos ? <HeartOutlined className="heartMusic" onClick={addFavoritos} style={{color:"red",fontSize:"20px",cursor:"pointer"}} />:
+                        SeeFavorites===true ? <HeartOutlined className="heartMusic" onClick={addFavoritos} style={{color:"red",fontSize:"20px",cursor:"pointer"}} />:
                             <HeartOutlined className="heartMusic" onClick={addFavoritos} style={{color:"white",fontSize:"20px",cursor:"pointer"}} />
 
                     }
@@ -110,5 +98,3 @@ const MusicItem =({Musica,PlayMusic,index,authUser,favoritos})=>{
     );
 }
 export default MusicItem;
-/*<Button shape="circle" icon={<PlayCircleOutlined />} style={{margin:"auto"}} onClick={()=>PlayMusic(index,Musica.id)}/>
-              */

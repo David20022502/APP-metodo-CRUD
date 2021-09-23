@@ -1,6 +1,6 @@
 .containerMainRegistro{
     display: flex;
-    height: 800px;
+    height: 850px;
     background: linear-gradient(180deg, #F09D85 0%, rgba(240, 157, 133, 0.58) 100%);
 }
 .containerRight{
@@ -68,4 +68,9 @@ text-align: center;
     margin: 0 auto;
 color: #FFFFFF;
     justify-content: center;
+}
+.defaultStyleError {
+    color: red;
+    font-size: 15px;
+    text-align: center;
 }
