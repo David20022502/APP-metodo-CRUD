@@ -1,3 +1,35 @@
+Explicación de la APP
+
+La aplicación es una APP de reproducción de música, las canciones están en google drive, y los links de ellos están dentro de un array en el código, y el método CRUD esta aplicada para poder crear un álbum de música, actualizarlos, mostrarlos o eliminarlos, lo que se muestra en la página de inicio son los artistas y los álbumes que están dentro de un arreglo, tenemos la opción de home, librería, favoritos, para poder acceder a los álbumes se debe entrar dentro de la librería y nos aparece dos opciones una de artistas y otra de álbumes, se debe dar click en álbumes, ya en esta nueva página se puede realizar las acciones mencionadas anteriormente, primero se visualiza todos los álbumes que ha creado el usuario, y las opciones de actualizar un álbum, crear un álbum, o ya sea de eliminar un álbum. Para poder crear un álbum le damos en “crear álbum” y se despliega otra página, y se presenta dos contenedores, en la cual en el primero, el usuario puede buscar canciones, por artistas o por el título, para agregarlas al nuevo álbum se debe dar click en el botón de más y se pasa al segundo contenedor, y si desea quitarlas del nuevo álbum le da click en el botón de menos, y por ultimo dar un nombre al álbum y dar en crear, y se crea, para poder actualizarlos se da click en “actualizar álbum”, y nos aparece opciones opciones nuevas como de marcar y desmarcar un álbum para seleccionarlo y actualizarlo, y lo mismo pasa para eliminarlos, pero para actualizar al momento de seleccionar un álbum y le damos en continuar se despliega una página donde el usuario puede cambiar el nombre del álbum, agregar canciones o eliminarlos. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
